@@ -66,4 +66,25 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  try {
+    // Ambil semua data users
+    const [users]: any = await pool.query(
+      'SELECT id, username, email FROM users'
+    );
+
+    return NextResponse.json({
+      message: 'Berhasil mengambil data users',
+      users
+    });
+
+  } catch (error) {
+    console.error('Get users error:', error);
+    return NextResponse.json(
+      { message: 'Terjadi kesalahan pada server' },
+      { status: 500 }
+    );
+  }
 } 
