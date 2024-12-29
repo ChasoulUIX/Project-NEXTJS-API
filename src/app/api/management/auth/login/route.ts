@@ -71,7 +71,7 @@ export async function GET() {
   try {
     // Ambil semua data users
     const [users]: any = await pool.query(
-      'SELECT id, name, nohp FROM management'
+      'SELECT name, nohp, gender, date_birth, email, id_departement, status FROM management'
     );
 
     return NextResponse.json({
