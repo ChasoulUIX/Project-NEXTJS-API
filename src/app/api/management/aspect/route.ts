@@ -3,7 +3,7 @@ import pool from '@/lib/db';
 
 export async function GET() {
   try {
-    // Ambil data dari tabel aspect
+    
     const [aspects]: any = await pool.query(
       'SELECT id_aspect, name_aspect FROM aspect'
     );
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   try {
     const { name_aspect } = await req.json();
 
-    // Validasi input
+    
     if (!name_aspect) {
       return NextResponse.json(
         { message: 'Nama aspect harus diisi' },
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Insert data aspect baru
+    
     const [result]: any = await pool.query(
       'INSERT INTO aspect (name_aspect) VALUES (?)',
       [name_aspect]
@@ -59,7 +59,7 @@ export async function PUT(req: Request) {
   try {
     const { id_aspect, name_aspect } = await req.json();
 
-    // Validasi input
+    
     if (!id_aspect || !name_aspect) {
       return NextResponse.json(
         { message: 'ID dan nama aspect harus diisi' },
@@ -67,7 +67,7 @@ export async function PUT(req: Request) {
       );
     }
 
-    // Update data aspect
+    
     const [result]: any = await pool.query(
       'UPDATE aspect SET name_aspect = ? WHERE id_aspect = ?',
       [name_aspect, id_aspect]
@@ -107,7 +107,7 @@ export async function DELETE(req: Request) {
       );
     }
 
-    // Delete data aspect
+    
     const [result]: any = await pool.query(
       'DELETE FROM aspect WHERE id_aspect = ?',
       [id_aspect]

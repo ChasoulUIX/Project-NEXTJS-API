@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import pool from '@/lib/db';
 
-export async function POST(req: Request) {
+// Definisikan interface untuk request body
+interface LoginRequest {
+  name: string;
+  nohp: string;
+  // tambahkan field lain yang diperlukan
+}
+
+export async function POST(request: Request) {
   try {
-    const { name, nohp } = await req.json();
+    const body: LoginRequest = await request.json();
+
+    const { name, nohp } = body;
 
     // Validasi input
     if (!name || !nohp) {

@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   eslint: {
-    ignoreDuringBuilds: true, // Ini akan mengabaikan error ESLint saat build
+    ignoreDuringBuilds: true,
   },
-}
+};
 
-module.exports = nextConfig 
+export default nextConfig; 
